@@ -1,1 +1,1 @@
-# pipeline_azure_databricks
+# bikestore-lakehouse-pipeline
