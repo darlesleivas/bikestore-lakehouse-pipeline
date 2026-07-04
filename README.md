@@ -81,14 +81,12 @@ O pipeline é orquestrado via **Databricks Jobs**, com dependências explícitas
 
 ## 📁 Estrutura do projeto
 
-bikestore-lakehouse-pipeline/
-├── Projeto_Bikes/
-│   ├── 1.bronze/
-│   ├── 2.silver/
-│   └── 3.gold/
-├── docs/
-│   └── job_graph.png
-└── README.md
+- `Projeto_Bikes/`
+  - `1.bronze/`
+  - `2.silver/`
+  - `3.gold/`
+- `docs/`
+- `README.md`
 
 ---
 
