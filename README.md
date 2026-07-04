@@ -8,6 +8,7 @@ O projeto simula um cenário real de engenharia de dados para uma loja de bicicl
 
 ## 🏗️ Arquitetura
 
+![Job Orchestration](docs/job_graph.png)
 
 O pipeline segue o padrão de arquitetura em camadas (Medallion Architecture):
 
@@ -104,6 +105,17 @@ O pipeline é orquestrado via **Databricks Jobs**, com dependências explícitas
 2. Ajuste as variáveis de path (`bronze_path`, `silver_path`, `gold_path`) para o seu ambiente
 3. Execute os notebooks na ordem: Bronze → Silver → Gold
 4. (Opcional) Configure um Databricks Job para orquestração automática
+
+---
+
+## 📊 Resultados
+
+Os dados finais da camada Gold estão disponíveis em [`data/gold/`](data/gold/), incluindo:
+
+- [`gold_sales_ny.csv`](data/gold/gold_sales_ny.csv) — total de vendas agregado por data de envio, filtrado para o estado de NY
+- [`gold_orders_pending.csv`](data/gold/gold_orders_pending.csv) — pedidos pendentes por cliente
+
+Esses arquivos representam o resultado final do pipeline, prontos para consumo em ferramentas de BI ou análise exploratória.
 
 ---
 
