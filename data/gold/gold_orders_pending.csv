@@ -1,0 +1,10 @@
+customer_id,order_date,quantity,store_name,status,first_name,phone,email
+110,2018-04-13,3,Santa Cruz Bikes,Pending,Ollie,(657) 648-2863,ollie.zimmerman@yahoo.com
+5,2018-04-17,4,Santa Cruz Bikes,Pending,Charolette,(916) 381-6003,charolette.rice@msn.com
+67,2018-04-17,1,Santa Cruz Bikes,Pending,Tommie,(916) 802-2952,tommie.melton@gmail.com
+56,2018-04-28,2,Rowlett Bikes,Pending,Lolita,(281) 363-3309,lolita.mosley@hotmail.com
+39,2018-04-17,8,Baldwin Bikes,Pending,Janetta,(717) 670-2634,janetta.aguirre@aol.com
+80,2018-04-22,5,Baldwin Bikes,Pending,Sarai,(716) 912-8110,sarai.mckee@msn.com
+43,2018-04-29,8,Rowlett Bikes,Pending,Mozelle,(281) 489-9656,mozelle.carter@aol.com
+138,2018-04-27,4,Santa Cruz Bikes,Pending,Jone,(657) 536-5165,jone.bernard@hotmail.com
+170,2018-04-17,4,Santa Cruz Bikes,Pending,Regine,(805) 763-4045,regine.gonzales@gmail.com
