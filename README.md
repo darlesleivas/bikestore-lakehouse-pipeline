@@ -8,14 +8,10 @@ O projeto simula um cenário real de engenharia de dados para uma loja de bicicl
 
 ## 🏗️ Arquitetura
 
-![Job Orchestration](docs/job_graph.png)
 
 O pipeline segue o padrão de arquitetura em camadas (Medallion Architecture):
 
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   BRONZE    │ --> │   SILVER    │ --> │    GOLD     │
-│ Dados brutos│     │Dados tratados│    │  Agregados  │
-└─────────────┘     └─────────────┘     └─────────────┘
+**Bronze** (dados brutos) → **Silver** (dados tratados) → **Gold** (dados agregados)
 
 ### 🥉 Camada Bronze
 - Ingestão de dados brutos em formato **Delta Lake**
