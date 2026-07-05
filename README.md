@@ -93,9 +93,19 @@ O pipeline é orquestrado via **Databricks Jobs**, com dependências explícitas
 
 ## 📊 Principais desafios técnicos resolvidos
 
-- **Consistência de arredondamento financeiro**: cálculos de desconto e valor líquido implementados com fórmulas independentes e `CAST ... AS DECIMAL`, evitando divergências de centavos entre colunas relacionadas
-- **Padronização de paths**: alinhamento de nomenclatura (singular/plural) entre as pastas físicas no ADLS e as tabelas registradas no Unity Catalog
-- **Autenticação segura com Azure**: configuração de acesso ao ADLS Gen2 via Storage Account Key / Service Principal
+## 🏗️ Principais decisões técnicas e desafios de arquitetura
+
+- **Provisionamento de infraestrutura no Azure**: criação da Storage Account (ADLS Gen2) com hierarchical namespace habilitado, estruturação de containers e diretórios seguindo a arquitetura Medallion (bronze/silver/gold), e definição de convenções de path para governança de dados em escala.
+
+- **Autenticação e integração Databricks ↔ Azure**: configuração de acesso via Service Principal (App Registration no Azure AD), com client id, secret e tenant endpoint gerenciados via OAuth2 (`ClientCredsTokenProvider`), evitando exposição de credenciais em texto plano no código através de Databricks Secret Scopes.
+
+- **Governança de dados com Unity Catalog**: registro de tabelas físicas (`EXTERNAL TABLE`) apontando para o Delta Lake no ADLS, permitindo que o catálogo funcione como camada de metadados centralizada, independente de onde o dado fisicamente reside.
+
+- **Modelagem orientada a Delta Lake**: uso de tabelas temporárias (`createOrReplaceTempView`) como camada de abstração entre a leitura bruta em Delta e as transformações SQL/PySpark, permitindo reprocessamento idempotente via `mode('overwrite')` sem duplicidade de dados.
+
+- **Pipeline data-driven via dicionários e loops**: em vez de repetir lógica de leitura tabela a tabela, o pipeline itera sobre um mapeamento (`{view_name: path}`), tornando a inclusão de novas entidades uma alteração de configuração, não de código.
+
+- **Orquestração com dependências explícitas e gates de qualidade**: uso de Databricks Jobs com tasks de validação (`validate_bronze`, `validate_silver`) atuando como checkpoints entre camadas, garantindo que a camada seguinte só processe dados já validados — um padrão equivalente a circuit breakers em pipelines de dados.
 
 ---
 
